@@ -1,5 +1,7 @@
 import mongoose, {ConnectOptions} from 'mongoose';
 import config from './config'; 
+import Photo from './models/Photo';
+import User from './models/User';
 
 (async ()=>{
 	const mongooseOptions: ConnectOptions = {
