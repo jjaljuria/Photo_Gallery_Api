@@ -1,24 +1,16 @@
 import {Router} from 'express';
 const router = Router();
 
-router.get('/', (req, res)=>{
-	res.send('Hola Mundo');
-});
+import * as PhotoController from '../controllers/photo.controller';
 
-router.get('/:id', (req, res)=>{
-	res.send(req.params.id);
-});
+router.get('/', PhotoController.getPhotos);
 
-router.post('/', (req, res)=>{
-	res.send('photos Post')
-});
+router.get('/:id', PhotoController.getPhoto);
 
-router.delete('/:id', (req, res)=>{
-	res.send('photos Delete id='+ req.params.id);
-});
+router.post('/', PhotoController.savePhoto);
 
-router.put('/', (req, res)=>{
-	res.json(req.body);
-});
+router.delete('/:id', PhotoController.deletePhoto);
+
+router.put('/', PhotoController.updatePhotos);
 
 export default router;
