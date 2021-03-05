@@ -12,7 +12,12 @@ const userSchema = new Schema({
 		required: true,
 		maxlength: 50
 	},
-	avatar: String
+	avatar: String,
+	email: {
+		type: String,
+		unique:true,
+		required: true
+	}
 },{
 	timestamps: true
 });
