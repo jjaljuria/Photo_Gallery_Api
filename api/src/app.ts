@@ -6,6 +6,7 @@ import config from './config';
 // import session from 'express-session';
 
 import photoRouter from './routes/photo.router';
+import userRouter from './routes/user.router';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use('/photos', photoRouter);
+app.use('/user', userRouter);
 // app.get('/', async (req, res)=>{
 // 	const salt = await bcrypt.genSalt(10);
 // 	const hash = bcrypt.hash('hola mundo', salt);
