@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.use('/photo', photoRouter);
+app.use('/photos', photoRouter);
 // app.get('/', async (req, res)=>{
 // 	const salt = await bcrypt.genSalt(10);
 // 	const hash = bcrypt.hash('hola mundo', salt);
