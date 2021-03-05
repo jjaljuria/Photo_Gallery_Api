@@ -1,12 +1,10 @@
 import {Router} from 'express';
 const router = Router();
 
-router.get('/login', (req, res)=>{
-	res.send('Login GET');
-});
+import * as UserController from '../controllers/user.controller';
 
-router.post('/login', (req, res)=>{
-	res.send('Login POST');
-});
+router.get('/login', UserController.loginForm);
+
+router.post('/login', UserController.login);
 
 export default router;
