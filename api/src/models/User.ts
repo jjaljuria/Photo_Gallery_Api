@@ -17,9 +17,13 @@ const userSchema = new Schema({
 		type: String,
 		unique:true,
 		required: true
+	},
+	deleted: {
+		type: Boolean,
+		default: false
 	}
 },{
-	timestamps: true
+	timestamps: true,
 });
 
 // userSchema.methods.encryptPassword = async (password) =>{
