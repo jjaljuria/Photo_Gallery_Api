@@ -3,9 +3,9 @@ const router = Router();
 
 import * as PhotoController from '../controllers/photo.controller';
 
-router.get('/', PhotoController.getPhotos);
+router.get('/:username', PhotoController.getPhotos);
 
-router.get('/:id', PhotoController.getPhoto);
+router.get('/id/:id', PhotoController.getPhoto);
 
 router.post('/', PhotoController.savePhoto);
 
