@@ -7,6 +7,7 @@ import User from './models/User';
 	const mongooseOptions: ConnectOptions = {
 		useUnifiedTopology: true,
 		useNewUrlParser: true,
+		useCreateIndex: true
 		// user: config.MONGO_USER,
 		// pass: config.MONGO_PASSWORD
 	}
