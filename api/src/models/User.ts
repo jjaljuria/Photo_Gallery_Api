@@ -1,8 +1,13 @@
-import {Schema, model} from 'mongoose';
+import {Schema, model, Model} from 'mongoose';
 import bcrypt from 'bcryptjs';
 import IUser from '../lib/IUser';
 
-const userSchema = new Schema<IUser>({
+
+interface IUserModel extends Model<IUser>{
+	encryptPassword(password: string): string;
+}
+
+const userSchema = new Schema<IUser, IUserModel>({
 	username: {
 		type: String,
 		required: true,
@@ -12,7 +17,6 @@ const userSchema = new Schema<IUser>({
 	password: {
 		type: String,
 		required: true,
-		maxlength: 50
 	},
 	avatar: String,
 	email: {
@@ -28,7 +32,7 @@ const userSchema = new Schema<IUser>({
 	timestamps: true,
 });
 
-userSchema.methods.encryptPassword = async (password) =>{
+userSchema.statics.encryptPassword = async (password) =>{
 	const salt = await bcrypt.genSalt(10);
 	const hash = bcrypt.hash(password, salt);
 	return hash;
@@ -39,4 +43,4 @@ userSchema.methods.matchPassword = async function(password){
 }
 
 
-export default model('User', userSchema);
+export default model<IUser, IUserModel>('User', userSchema);

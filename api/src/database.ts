@@ -15,6 +15,12 @@ import User from './models/User';
 	try{
 		const db = await mongoose.connect(`mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}`, mongooseOptions);
 		console.log('Database is connected to:', db.connection.name);
+		// console.log(await User.create({
+		// 	username: 'jjaljuria',
+		// 	password: await User.encryptPassword('12345'),
+		// 	email: 'josejavieral13@gmail.com',
+		// }));
+
 	}catch(error){
 		console.error(error);  
 	}

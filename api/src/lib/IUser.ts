@@ -5,4 +5,5 @@ export default interface IUser extends Document{
 	username: string;
 	email: string;
 	deleted: boolean;
+	encryptPassword(): string;
 }
