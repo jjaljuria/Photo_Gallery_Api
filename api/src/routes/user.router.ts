@@ -4,6 +4,8 @@ import passport from 'passport';
 
 import * as UserController from '../controllers/user.controller';
 
-router.post('/login', passport.authenticate('local') ,UserController.login);
+router.post('/login', passport.authenticate('local', {
+	successRedirect: '/photos/',
+}));
 
 export default router;

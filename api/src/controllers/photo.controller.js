@@ -1,13 +1,19 @@
 import { RequestHandler } from "express";
-import User from '../models/User';
 import Photo from "../models/Photo";
+import session from 'express';
 
+declare global{
+	namespace Express{
+		interface User{
+			_id: string;
+		}
+	}
+}
 
 export const getPhotos: RequestHandler = async (req, res) =>{
-	const {username} = req.params;
-	const user = await User.findOne({username: username});
-	const photos = await Photo.find({idUser: user._id});
-	return res.json(photos);
+	console.log(req.session.user = 'hola');
+	const photos = await Photo.find({idUser: req.user?._id});
+	return res.json(req.user?._id);
 }
 
 export const getPhoto: RequestHandler = async (req, res) =>{

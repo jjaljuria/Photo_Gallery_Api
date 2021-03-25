@@ -1,9 +1,10 @@
-import {Schema, model, Model} from 'mongoose';
+import {Schema, model, Model, Document} from 'mongoose';
 import bcrypt from 'bcryptjs';
 import IUser from '../lib/IUser';
 
 
 export interface IUserModel extends Model<IUser>{
+	_id: string;
 	encryptPassword(password: string): string;
 }
 
