@@ -3,11 +3,11 @@ import bcrypt from 'bcryptjs';
 import IUser from '../lib/IUser';
 
 
-interface IUserModel extends Model<IUser>{
+export interface IUserModel extends Model<IUser>{
 	encryptPassword(password: string): string;
 }
 
-const userSchema = new Schema<IUser, IUserModel>({
+const userSchema = new Schema<IUser>({
 	username: {
 		type: String,
 		required: true,
