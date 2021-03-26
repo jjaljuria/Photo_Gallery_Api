@@ -1,6 +1,7 @@
-import { RequestHandler } from "express";
+import { Response } from 'express';
 
-export const login: RequestHandler = async (req, res) =>{
-	console.log(req.user);
-	res.send('login POST');
+export const login: any = async (req: any, res: Response) =>{
+	req.session.user = req.user;
+	res.json(req.session.user);
 }
+

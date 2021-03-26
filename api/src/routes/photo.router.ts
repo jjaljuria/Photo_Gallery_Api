@@ -1,9 +1,10 @@
 import {Router} from 'express';
 const router = Router();
+import {ensureToken} from '../lib/EnsureToken';
 
 import * as PhotoController from '../controllers/photo.controller';
 
-router.get('/', PhotoController.getPhotos);
+router.get('/', ensureToken , PhotoController.getPhotos);
 
 router.get('/id/:id', PhotoController.getPhoto);
 

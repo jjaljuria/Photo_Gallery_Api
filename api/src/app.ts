@@ -15,16 +15,25 @@ import './config/passport';
 // Settings
 app.set('port', config.PORT);
 
+declare module 'express-session'{
+	interface SessionData{
+		user: string;
+	}
+}
 
 // Middlewares
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors({
+	origin: ['http://localhost:3000'],
+	methods: ["GET", "POST", "PUT", "DELETE"],
+	credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(session({
 	secret: 'mysecretapp',
 	resave: true,
-	saveUninitialized: true
+	saveUninitialized: true,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
