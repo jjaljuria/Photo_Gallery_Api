@@ -22,7 +22,7 @@ const userSchema = new Schema<IUser>({
 	},
 	avatar: {
 		type:String,
-		default: path.join(__dirname, '../public/img/Avatar.jpg')
+		default: './Avatar.jpg'
 	},
 	email: {
 		type: String,

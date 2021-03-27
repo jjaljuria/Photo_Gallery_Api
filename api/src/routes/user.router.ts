@@ -8,4 +8,6 @@ router.post('/login', passport.authenticate('local'), UserController.login);
 
 router.get('/login', UserController.verifyLogin);
 
+router.get('/avatar/:username', UserController.getAvatar);
+
 export default router;

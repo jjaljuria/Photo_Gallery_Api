@@ -67,5 +67,8 @@ app.use(upload);
 app.use('/photos', photoRouter);
 app.use('/user', userRouter);
 
+// Statics
+app.use(express.static(path.join(__dirname, 'public/img')));
+
 
 export default app;

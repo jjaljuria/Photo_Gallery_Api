@@ -16,7 +16,16 @@ export const verifyLogin: any = (req: any, res: Response) =>{
 
 export const getAvatar: RequestHandler = async (req, res) =>{
 	const { username } = req.params;
+	const avatar = await (await User.findOne({username})).avatar;
 
-	return await (await User.findOne({username})).avatar;
+	res.json(avatar);
+}
+
+export const updateAvatar: RequestHandler = async (req, res) =>{
+	if(req.user){
+		return res.json('updated');
+	}
+
+	return res.json('Did not update');
 }
 
