@@ -1,6 +1,7 @@
 import {Schema, model, Model, Document} from 'mongoose';
 import bcrypt from 'bcryptjs';
 import IUser from '../lib/IUser';
+import path from 'path';
 
 
 export interface IUserModel extends Model<IUser>{
@@ -19,7 +20,10 @@ const userSchema = new Schema<IUser>({
 		type: String,
 		required: true,
 	},
-	avatar: String,
+	avatar: {
+		type:String,
+		default: path.join(__dirname, '../public/img/Avatar.jpg')
+	},
 	email: {
 		type: String,
 		unique:true,
