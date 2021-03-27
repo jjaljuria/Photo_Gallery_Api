@@ -21,11 +21,11 @@ export const getAvatar: RequestHandler = async (req, res) =>{
 	res.json(avatar);
 }
 
-export const updateAvatar: RequestHandler = async (req, res) =>{
-	if(req.user){
-		return res.json('updated');
-	}
+export const updateAvatar: RequestHandler = async (req: any, res) =>{
+	const user = req.user?._id;
+	const {url} = req.body;
 
-	return res.json('Did not update');
+	const avatarUpdated = await User.findByIdAndUpdate(user?._id, {url}, {new: true});
+	res.json(avatarUpdated);
 }
 

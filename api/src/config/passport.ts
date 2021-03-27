@@ -7,7 +7,7 @@ const IUser = require('../lib/IUser');
 passport.use(new localStrategy({
 	usernameField: 'email',
 }, async (email: string, password: string, done: Function) =>{
-	const user = await User.findOne({email});
+	const user = await User.findOne({email}).select('password');
 	if(!user){
 		return done(null, false, {message: 'Not User found'});
 	}else{
