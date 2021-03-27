@@ -6,4 +6,6 @@ import * as UserController from '../controllers/user.controller';
 
 router.post('/login', passport.authenticate('local'), UserController.login);
 
+router.get('/login', UserController.verifyLogin);
+
 export default router;

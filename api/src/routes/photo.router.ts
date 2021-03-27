@@ -4,7 +4,7 @@ import {ensureToken} from '../lib/EnsureToken';
 
 import * as PhotoController from '../controllers/photo.controller';
 
-router.get('/', ensureToken , PhotoController.getPhotos);
+router.get('/:username', PhotoController.getPhotos);
 
 router.get('/id/:id', PhotoController.getPhoto);
 

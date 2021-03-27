@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import Photo from "../models/Photo";
+import User from '../models/User';
 
 declare global {
 	namespace Express {
@@ -10,7 +11,11 @@ declare global {
 }
 
 export const getPhotos: RequestHandler = async (req, res) => {
-	const photos = await Photo.find({ idUser: req.user?._id });
+	const {username} = req.params;
+	
+	const user = await User.find({username});
+	const photos = await Photo.find({idUser: user._id});
+
 	return res.json(photos);
 }
 
