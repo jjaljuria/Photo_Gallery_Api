@@ -38,7 +38,9 @@ export const savePhoto: RequestHandler = async (req, res) => {
 }
 
 export const deletePhoto: RequestHandler = async (req, res) => {
-	res.send('photo DELETE');
+	const {id} = req.params;
+	const photoDeleted = await Photo.findByIdAndDelete(id);
+	res.json(photoDeleted);
 }
 
 export const updatePhotos: RequestHandler = async (req, res) => {
