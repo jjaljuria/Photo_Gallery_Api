@@ -26,7 +26,15 @@ export const getPhoto: RequestHandler = async (req, res) => {
 }
 
 export const savePhoto: RequestHandler = async (req, res) => {
-	res.send('photo POST');
+	const user = req.user?._id;
+	const positionInitial = 1;
+
+	const photoSaved = await Photo.create({
+		idUser: user,
+		url: `./${req.file.filename}`,
+		position: positionInitial
+	});
+	res.json(photoSaved);
 }
 
 export const deletePhoto: RequestHandler = async (req, res) => {
