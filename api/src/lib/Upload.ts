@@ -1,6 +1,6 @@
 import multer from 'multer';
 import path from 'path';
-const uuid = require('uuid');
+import * as uuid from 'uuid';
 
 const storage = multer.diskStorage({
 	destination: path.join(__dirname, '../public/img'),
