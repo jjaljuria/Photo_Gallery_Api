@@ -13,7 +13,7 @@ declare global {
 export const getPhotos: RequestHandler = async (req, res) => {
 	const {username} = req.params;
 	
-	const user = await User.find({username});
+	const user = await User.findOne({username});
 	const photos = await Photo.find({idUser: user._id});
 
 	return res.json(photos);
@@ -31,16 +31,16 @@ export const savePhoto: RequestHandler = async (req, res) => {
 
 	const photoSaved = await Photo.create({
 		idUser: user,
-		url: `./${req.file.filename}`,
+		url: `${req.file.filename}`,
 		position: positionInitial
 	});
 	res.json(photoSaved);
 }
 
 export const deletePhoto: RequestHandler = async (req, res) => {
-	const {id} = req.params;
-	const photoDeleted = await Photo.findByIdAndDelete(id);
-	res.json(photoDeleted);
+	const checkedIds = req.body;
+	checkedIds.forEach(async (id: string) => await Photo.findByIdAndDelete(id)); 
+	res.json(checkedIds);
 }
 
 export const updatePhotos: RequestHandler = async (req, res) => {

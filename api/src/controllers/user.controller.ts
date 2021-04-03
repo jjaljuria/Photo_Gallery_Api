@@ -23,7 +23,7 @@ export const getAvatar: RequestHandler = async (req, res) =>{
 
 export const updateAvatar: RequestHandler = async (req: any, res) =>{
 	const user = req.user?._id;
-	const avatarUpdated = await User.findByIdAndUpdate(user?._id, {avatar: `./${req.file.filename}`}, {new: true});
+	const avatarUpdated = await User.findByIdAndUpdate(user?._id, {avatar: `${req.file.filename}`}, {new: true});
 	res.json(avatarUpdated);
 }
 
