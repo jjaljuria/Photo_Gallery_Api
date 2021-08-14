@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc ",
-    "dev": "ts-node-dev src/index.ts"
+    "build": "tsc --build tsconfig.json",
+    "dev": "ts-node-dev src/index.ts",
+    "start": "tsc --build tsconfig.json && node dist/index.js"
   },
   "keywords": [],
   "author": "",
