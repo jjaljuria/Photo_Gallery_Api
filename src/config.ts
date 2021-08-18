@@ -1,8 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config();
 
-console.log(process.env.HELLO);
-
 export default {
 	MONGO_DATABASE: process.env.MONGO_DATABASE || 'photo_gallery',
 	PORT: process.env.PORT || '4000',

@@ -1,9 +1,9 @@
-import mongoose, {ConnectOptions} from 'mongoose';
-import config from './config'; 
+import mongoose, { ConnectOptions } from 'mongoose';
+import config from './config';
 import Photo from './models/Photo';
 import User from './models/User';
 
-(async ()=>{
+(async () => {
 	const mongooseOptions: ConnectOptions = {
 		useUnifiedTopology: true,
 		useNewUrlParser: true,
@@ -13,8 +13,8 @@ import User from './models/User';
 		// pass: config.MONGO_PASSWORD
 	}
 
-	try{
-		const db = await mongoose.connect(`mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}`, mongooseOptions);
+	try {
+		const db = await mongoose.connect(`${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST}/${config.MONGO_DATABASE}`, mongooseOptions);
 		console.log('Database is connected to:', db.connection.name);
 		// console.log(await User.create({
 		// 	username: 'jjaljuria',
@@ -22,8 +22,10 @@ import User from './models/User';
 		// 	email: 'josejavieral13@gmail.com',
 		// }));
 
-	}catch(error){
-		console.error(error);  
+	} catch (error) {
+		console.error(error);
 	}
-	
+
 })();
+
+
