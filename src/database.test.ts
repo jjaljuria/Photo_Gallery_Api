@@ -1,3 +1,7 @@
+function hola(name: string) {
+	return "hola " + name;
+}
+
 test('database connection', () => {
-	expect(123).toBe(123);
+	expect(hola('jose')).toBe('hola jose');
 })
