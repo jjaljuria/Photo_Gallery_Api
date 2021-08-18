@@ -6,8 +6,12 @@
   "scripts": {
     "build": "tsc --build tsconfig.json",
     "dev": "ts-node-dev src/index.ts",
-    "start": "tsc --build tsconfig.json && node dist/index.js",
+    "start": "node dist/index.js",
+    "postinstall": "tsc",
     "test": "jest"
+  },
+  "engines": {
+    "node": "12.16.3"
   },
   "keywords": [],
   "author": "",
