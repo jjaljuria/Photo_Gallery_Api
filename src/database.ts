@@ -1,7 +1,6 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 import config from './config';
-import Photo from './models/Photo';
-import User from './models/User';
+import { createRootUser, verifyExistRootUser } from './lib/utilities';
 
 (async () => {
 	const mongooseOptions: ConnectOptions = {
@@ -9,18 +8,14 @@ import User from './models/User';
 		useNewUrlParser: true,
 		useCreateIndex: true,
 		useFindAndModify: true,
-		// user: config.MONGO_USER,
-		// pass: config.MONGO_PASSWORD
 	}
 
 	try {
-		const db = await mongoose.connect(`${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST}/${config.MONGO_DATABASE}`, mongooseOptions);
+		const db = await mongoose.connect(`${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST + '/' + config.MONGO_DATABASE}`, mongooseOptions);
 		console.log('Database is connected to:', db.connection.name);
-		// console.log(await User.create({
-		// 	username: 'jjaljuria',
-		// 	password: await User.encryptPassword('12345'),
-		// 	email: 'josejavieral13@gmail.com',
-		// }));
+		if (!verifyExistRootUser(config)) {
+			createRootUser(config);
+		}
 
 	} catch (error) {
 		console.error(error);
