@@ -22,7 +22,7 @@ describe('database connection', () => {
 	});
 
 	it('verify createRootUser', async () => {
-		const data = {
+		const data: Object = {
 			username: config.ROOT_USER,
 			password: await User.encryptPassword(config.ROOT_PASSWORD || ''),
 			email: config.ROOT_EMAIL,
