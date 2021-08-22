@@ -12,9 +12,11 @@ declare global {
 
 export const getPhotos: RequestHandler = async (req, res) => {
 	const { username } = req.params;
-	console.log(username);
 	const user = await User.findOne({ username });
-	const photos = await Photo.find({ idUser: user._id });
+	let photos = null;
+	if (user !== null) {
+		photos = await Photo.find({ idUser: user._id });
+	}
 
 	return res.json(photos);
 }
