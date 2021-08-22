@@ -1,13 +1,16 @@
 import { verifyExistRootUser, createRootUser } from './lib/utilities';
 import config from './config';
 import bcrypt from 'bcryptjs';
-
-jest.mock('./models/User.ts');
 import User from './models/User';
+jest.mock('./models/User.ts');
 
-User.find.mockReturnValueOnce({ username: 'jose' }).mockReturnValueOnce(undefined);
-User.encryptPassword.mockImplementation((password: string) => bcrypt.hashSync(password));
-User.create.mockImplementationOnce(data => data);
+const mockedUser = User as jest.Mocked<typeof User>;
+
+
+
+mockedUser.find.mockReturnValueOnce({ username: 'jose' }).mockReturnValueOnce(undefined);
+mockedUser.encryptPassword.mockImplementation((password: string) => bcrypt.hashSync(password));
+mockedUser.create.mockImplementationOnce(data => data);
 
 describe('database connection', () => {
 	it('verify if exist in databases root user', async () => {
