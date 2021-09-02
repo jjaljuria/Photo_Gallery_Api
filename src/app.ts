@@ -16,8 +16,8 @@ import './config/passport';
 // Settings
 app.set('port', config.PORT);
 
-declare module 'express-session'{
-	interface SessionData{
+declare module 'express-session' {
+	interface SessionData {
 		user: string;
 	}
 }
@@ -25,12 +25,12 @@ declare module 'express-session'{
 // Middlewares
 app.use(morgan('dev'));
 app.use(cors({
-	origin: ['http://localhost:3000'],
+	origin: [config.CORS_ORIGIN],
 	methods: ["GET", "POST", "PUT", "DELETE"],
 	credentials: true,
 }));
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(session({
 	secret: 'mysecretapp',
 	resave: true,
