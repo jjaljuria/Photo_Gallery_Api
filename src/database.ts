@@ -1,6 +1,7 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 import config from './config';
 import { createRootUser, verifyExistRootUser } from './lib/utilities';
+import User from './models/User';
 
 (async () => {
 	const mongooseOptions: ConnectOptions = {
