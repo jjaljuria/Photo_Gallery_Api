@@ -4,7 +4,7 @@ export const verifyExistRootUser = async (config: any) => {
 	try {
 		const user: typeof User = await User.findOne({ username: config.ROOT_USER });
 		return user !== undefined && user !== null;
-		console.log(user.name);
+
 	} catch (err) {
 		console.log(err);
 	}
