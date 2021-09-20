@@ -14,6 +14,7 @@ import { createRootUser, verifyExistRootUser } from './lib/utilities';
 		const db = await mongoose.connect(`${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST + '/' + config.MONGO_DATABASE}`, mongooseOptions);
 		console.log('Database is connected to:', db.connection.name);
 		if (!verifyExistRootUser(config)) {
+			console.log('not exit root user', config);
 			createRootUser(config);
 		}
 
