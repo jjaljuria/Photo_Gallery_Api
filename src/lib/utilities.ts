@@ -2,8 +2,9 @@ import User from '../models/User';
 
 export const verifyExistRootUser = async (config: any) => {
 	try {
-		const user: typeof User = await User.find({ username: config.ROOT_USER });
+		const user: typeof User = await User.findOne({ username: config.ROOT_USER });
 		return user !== undefined && user !== null;
+		console.log(user.name);
 	} catch (err) {
 		console.log(err);
 	}

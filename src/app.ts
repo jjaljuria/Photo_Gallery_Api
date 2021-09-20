@@ -21,7 +21,7 @@ declare module 'express-session' {
 		user: string;
 	}
 }
-
+console.log(config.CORS_ORIGIN)
 // Middlewares
 app.use(morgan('dev'));
 app.use(cors({
