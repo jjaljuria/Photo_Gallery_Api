@@ -17,6 +17,8 @@ import { createRootUser, verifyExistRootUser } from './lib/utilities';
 			console.log('not exit root user', config);
 			createRootUser(config);
 		}
+		const user: typeof User = await User.findOne({ username: config.ROOT_USER });
+		console.log(user);
 
 	} catch (error) {
 		console.error(error);
