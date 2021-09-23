@@ -12,12 +12,12 @@ import userRouter from './routes/user.router';
 const MongoDBStore = MongoStore(session);
 const store = new MongoDBStore({
 	uri: `${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST}`,
-	collection: 'photo_gallery',
+	collection: 'sessions',
 });
 
 store.on('error', function (error) {
 	console.log(error);
-})
+});
 
 // Inicializations
 const app = express();
@@ -47,7 +47,7 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true,
 	cookie: {
-		maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+		maxAge: 1000 * 60 * 60 * 24 * 7
 	},
 	store
 }));
