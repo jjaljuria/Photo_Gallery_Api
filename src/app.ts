@@ -40,7 +40,13 @@ app.use(session({
 	saveUninitialized: true,
 	store: MongoStore.create({
 		mongoUrl: `${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST}`,
-		dbName: 'photo_gallery'
+		dbName: 'photo_gallery',
+		mongoOptions: {
+			useUnifiedTopology: true,
+			useNewUrlParser: true,
+			useCreateIndex: true,
+			useFindAndModify: true,
+		}
 	})
 }));
 
