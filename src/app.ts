@@ -47,14 +47,7 @@ app.use(session({
 	secret: 'mysecretapp',
 	resave: true,
 	saveUninitialized: true,
-	store: MongoStore({
-		mongoUrl: `${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST}`,
-		dbName: 'photo_gallery',
-		mongoOptions: {
-			useUnifiedTopology: true,
-			useNewUrlParser: true,
-		}
-	})
+	store
 }));
 
 app.use(passport.initialize());
