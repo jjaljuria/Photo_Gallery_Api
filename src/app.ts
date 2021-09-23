@@ -44,8 +44,6 @@ app.use(session({
 		mongoOptions: {
 			useUnifiedTopology: true,
 			useNewUrlParser: true,
-			useCreateIndex: true,
-			useFindAndModify: true,
 		}
 	})
 }));
