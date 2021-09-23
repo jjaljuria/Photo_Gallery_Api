@@ -5,11 +5,19 @@ import config from './config';
 import session from 'express-session';
 import passport from 'passport';
 import path from 'path';
-import MongoStore from 'connect-mongo';
-import mongoose from 'mongoose';
+import MongoStore from 'connect-mongodb-session';
 import photoRouter from './routes/photo.router';
 import userRouter from './routes/user.router';
 
+const MongoDBStore = MongoStore(session);
+const store = new MongoDBStore({
+	uri: `${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST}`,
+	collection: 'photo_gallery',
+});
+
+store.on('error', function (error) {
+	console.log(error);
+})
 
 // Inicializations
 const app = express();
@@ -38,14 +46,10 @@ app.use(session({
 	secret: 'mysecretapp',
 	resave: true,
 	saveUninitialized: true,
-	store: MongoStore.create({
-		mongoUrl: `${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST}`,
-		dbName: 'photo_gallery',
-		mongoOptions: {
-			useUnifiedTopology: true,
-			useNewUrlParser: true,
-		}
-	})
+	cookie: {
+		maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+	},
+	store
 }));
 
 app.use(passport.initialize());
