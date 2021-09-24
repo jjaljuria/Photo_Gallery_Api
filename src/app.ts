@@ -13,7 +13,8 @@ const MongoDBStore = MongoStore(session);
 const store = new MongoDBStore({
 	uri: `${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST}`,
 	collection: 'sessions',
-	databaseName: 'photo_gallery'
+	databaseName: 'photo_gallery',
+	expires: 1000 * 60 * 60 * 24 * 14
 });
 
 store.on('error', function (error) {
