@@ -36,6 +36,7 @@ export const savePhoto: RequestHandler = async (req, res) => {
 		url: `${req.file.filename}`,
 		position: positionInitial
 	});
+	res.header('Access-Control-Allow-Origin', '*');
 	res.json(photoSaved);
 }
 
