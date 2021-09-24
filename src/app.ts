@@ -14,7 +14,7 @@ const store = new MongoDBStore({
 	uri: `${!config.DEBUG ? config.MONGO_URI : config.MONGO_LOCALHOST}`,
 	collection: 'sessions',
 	databaseName: 'photo_gallery',
-	expires: 1000 * 60 * 60 * 24 * 14
+	expires: 1000 * 60 * 60 * 24 * 14,
 });
 
 store.on('error', function (error) {
@@ -48,7 +48,11 @@ app.use(session({
 	secret: 'mysecretapp',
 	resave: true,
 	saveUninitialized: true,
-	store
+	store,
+	cookie: {
+		sameSite: true,
+		maxAge: 1000 * 60 * 60 * 24 * 14
+	}
 }));
 
 app.use(passport.initialize());
