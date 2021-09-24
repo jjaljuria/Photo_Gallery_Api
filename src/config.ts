@@ -11,5 +11,5 @@ export default {
 	ROOT_PASSWORD: process.env.ROOT_PASSWORD,
 	ROOT_EMAIL: process.env.ROOT_EMAIL,
 	CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
-	SECRET: process.env.SECRET
+	SECRET: process.env.SECRET || 'mysecret'
 }
