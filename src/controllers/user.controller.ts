@@ -2,7 +2,9 @@ import { Response, RequestHandler } from 'express';
 import User from '../models/User';
 
 export const login: any = (req: any, res: Response) => {
-	req.session.user = req.user;
+	if (!req.session.user) {
+		req.session.user = req.user;
+	}
 	res.json(req.session.user);
 }
 
