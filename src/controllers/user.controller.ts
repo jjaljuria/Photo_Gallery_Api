@@ -10,20 +10,10 @@ export const login: any = (req: any, res: Response) => {
 	res.json({ token });
 }
 
-export const verifyLogin: any = (req: any, res: Response) => {
-	const token = req.headers['x-access-token'];
-	console.log(token);
+export const verifyLogin: any = async (req: any, res: Response) => {
 
-	if (!token) return res.status(403).json({ message: 'not token provided' })
-
-	jwt.verify(token, config.SECRET, async function (err: any, token: any) {
-
-		if (err) return res.json({ loggedIn: false }).status(403);
-
-		const user = await User.findById(token.id);
-		return res.json({ loggedIn: true, user }).status(200);
-	});
-
+	const user = await User.findById(req.idUser);
+	return res.json({ loggedIn: true, user }).status(200);
 }
 
 export const getAvatar: RequestHandler = async (req, res) => {
