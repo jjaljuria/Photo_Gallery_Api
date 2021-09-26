@@ -1,4 +1,4 @@
-import { verifyExistRootUser, createRootUser } from './lib/utilities';
+import { verifyExistRootUser, createRootUser } from './lib/rootUserUtilities';
 import config from './config';
 import bcrypt from 'bcryptjs';
 import User from './models/User';
