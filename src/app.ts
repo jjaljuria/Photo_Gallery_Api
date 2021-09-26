@@ -38,8 +38,8 @@ declare module 'express-session' {
 app.use(morgan('dev'));
 app.use(cors({
 	origin: [config.CORS_ORIGIN],
-	methods: ["GET", "POST", "PUT", "DELETE"],
-	credentials: true,
+	methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+	credentials: true
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
