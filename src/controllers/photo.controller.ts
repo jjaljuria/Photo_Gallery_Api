@@ -1,6 +1,7 @@
 import { RequestHandler } from "express";
 import Photo from "../models/Photo";
 import User from '../models/User';
+import config from '../config';
 
 declare global {
 	namespace Express {
@@ -37,7 +38,7 @@ export const savePhoto: RequestHandler = async (req, res) => {
 		position: positionInitial
 	});
 
-	res.json(photoSaved);
+	res.header({ 'Access-Control-Allow-Origin': config.CORS_ORIGIN }).json(photoSaved);
 }
 
 export const deletePhoto: RequestHandler = async (req, res) => {
